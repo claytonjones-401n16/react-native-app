@@ -5,11 +5,14 @@ import {Container, Header, Left, Body, Right, Button, Icon, Title} from 'native-
 export default function AppHeader(props) {
 
   const styles = {
-    container: {
-      paddingTop: 30
-    },
+    // container: {
+    //   paddingTop: 30
+    // },
     title: {
       textAlign: 'center'
+    },
+    header: {
+      fontFamily: 'serif'
     }
   }
 
@@ -17,10 +20,10 @@ export default function AppHeader(props) {
     <Container style={styles.container}>
       <Header >
         <Left />
-        <Body >
-          <Title >Roll the Dice!</Title>
+        <Body style={styles.header}>
+          <Title style={styles.header}>Roll the Dice!</Title>
         </Body>
-        <Right />
+        {/* <Right /> */}
       </Header>
     </Container>
   )

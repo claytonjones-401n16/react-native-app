@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
-import { Button } from "native-base";
+import { Button, Content, Container } from "native-base";
 // import * as Permissions from 'expo-permissions';
 import { Accelerometer } from "expo-sensors";
 import DisplayDice from '../displayDice/display-dice';
+import DiceForm from '../diceForm';
+import * as Font from 'expo-font';
 
 export default function Dice() {
   const [data, setData] = useState({});
@@ -12,16 +14,19 @@ export default function Dice() {
 
   const [rollResults, setRollResults] = useState([]);
 
-
-
+  async function getFonts() {
+    await Font.loadAsync({
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+    });
+  }
 
   useEffect(() => {
-    return () => {
-      
-    };
-  });
+    getFonts();
+  }, []);
 
   const rollDice = (n) => {
+    alert(n);
     let results = [];
     for (let i = 0; i < n; i++) {
       results.push(Math.ceil(Math.random() * 6));
@@ -35,6 +40,7 @@ export default function Dice() {
       if (parseInt(accelerometerData.x) > 2) {
         alert('FAST!');
         unsubscribe();
+        rollDice(numberOfDice);
       }
 
       setData(accelerometerData);
@@ -48,17 +54,36 @@ export default function Dice() {
     Accelerometer.removeAllListeners();
   };
 
+  const styles = {
+    wrapper: {
+      flex: 1
+    },
+
+    menu: {
+      flexDirection: 'row',
+    }
+  }
+
+
   return (
-    <View>
+    <>
+      <View>
+        <Text>
+          Select number of dice to roll then hit Ready
+        </Text>
+      </View>
+      <View>
+        <Text>
+          Then flick your phone to roll!
+        </Text>
+      </View>
       <DisplayDice results={rollResults}/>
+      <DiceForm diceData={{numberOfDice, setNumberOfDice}}/>
       <Button block onPress={subscribe}>
-        <Text>Subscribe</Text>
+        <Text>Ready</Text>
       </Button>
-      <Button block onPress={unsubscribe}>
-        <Text>Unsubscribe</Text>
-      </Button>
-      <Text>Mice</Text>
+      
       <Text>{data.x || 0}</Text>
-    </View>
+    </>
   );
 }
