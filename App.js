@@ -6,6 +6,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import Dice from "./components/dice";
 import Accelerate from "./components/dice/accelerate";
+import DisplayDice from "./components/displayDice";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       {/* <Accelerate /> */}
 
         <Dice />
+        <DisplayDice />
         <Text>Open up App.js to start working on your app!</Text>
         <StatusBar style="auto" />
         <Footer />
