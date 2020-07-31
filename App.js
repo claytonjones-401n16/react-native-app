@@ -1,33 +1,30 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View} from "react-native";
+import {Container, Content} from 'native-base';
 import Header from "./components/header";
 // import { Header } from "native-base";
 import Footer from "./components/footer";
 import Dice from "./components/dice";
-import Accelerate from "./components/dice/accelerate";
 
 export default function App() {
   return (
-    <>
-      {/* <Header /> */}
-      <View style={styles.container}>
-      {/* <Accelerate /> */}
-
+    <Container>
+      <Header />
+      <Content>
         <Dice />
-        <Text>Open up App.js to start working on your app!</Text>
-        <StatusBar style="auto" />
-        <Footer />
-      </View>
-    </>
+      </Content>
+      <Footer />
+    </Container>
   );
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
+    flexDirection: 'row',
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
-});
+};

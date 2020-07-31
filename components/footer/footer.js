@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import {Footer} from 'native-base';
 
-export default function Footer(props) {
+export default function AppFooter(props) {
 
   return (
-    <View>
-      <Text>Footer</Text>
-    </View>
+    <Footer>
+      
+    </Footer>
   )
 }
