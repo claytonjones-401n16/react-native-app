@@ -12,24 +12,25 @@ export default function DisplayDice(props) {
     4: require('../../assets/dice-image/dice-04.png'),
     5: require('../../assets/dice-image/dice-05.png'),
     6: require('../../assets/dice-image/dice-06.png'),
-  
   }
-  return (
-    <View>
-      <Image
-       source={dice[props.results]}
-       style={{
-         width:120,
-         height:120
-       }} />
 
-       <image 
-      source={dice['1']}
+  let imagesToDisplay = [];
+
+  props.results.forEach((value, i) => {
+    imagesToDisplay.push(<Image
+      ket={i}
+      source={dice[[value]]}
       style={{
         width:120,
         height:120
-       }} />
+      }} />)
+  })
 
+  
+  
+  return (
+    <View>
+     {imagesToDisplay}
     </View>
   )
 }

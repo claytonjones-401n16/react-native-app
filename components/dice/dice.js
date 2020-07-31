@@ -26,8 +26,8 @@ export default function Dice() {
   }, []);
 
   const rollDice = (n) => {
-    alert(n);
     let results = [];
+    // [5, 5, 4, 3, 2]
     for (let i = 0; i < n; i++) {
       results.push(Math.ceil(Math.random() * 6));
     }
