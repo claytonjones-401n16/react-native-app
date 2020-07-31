@@ -18,7 +18,7 @@ export default function DisplayDice(props) {
 
   props.results.forEach((value, i) => {
     imagesToDisplay.push(<Image
-      ket={i}
+      key={i}
       source={dice[[value]]}
       style={{
         width:120,
@@ -29,7 +29,7 @@ export default function DisplayDice(props) {
   
   
   return (
-    <View>
+    <View style={{flexDirection: 'row', flexWrap: 'wrap', flex: 1}}>
      {imagesToDisplay}
     </View>
   )

@@ -12,19 +12,17 @@ export default function AppHeader(props) {
       textAlign: 'center'
     },
     header: {
-      fontFamily: 'serif'
+      fontFamily: 'System'
     }
   }
 
   return (
-    <Container style={styles.container}>
       <Header >
         <Left />
         <Body style={styles.header}>
           <Title style={styles.header}>Roll the Dice!</Title>
         </Body>
-        {/* <Right /> */}
+        <Right />
       </Header>
-    </Container>
   )
 }

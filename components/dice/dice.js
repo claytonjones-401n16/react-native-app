@@ -38,7 +38,6 @@ export default function Dice() {
   const subscribe = () => {
     Accelerometer.addListener((accelerometerData) => {
       if (parseInt(accelerometerData.x) > 2) {
-        alert('FAST!');
         unsubscribe();
         rollDice(numberOfDice);
       }
@@ -67,23 +66,27 @@ export default function Dice() {
 
   return (
     <>
-      <View>
-        <Text>
-          Select number of dice to roll then hit Ready
-        </Text>
+    <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}>
+      <View style={{flex: 1, height: 400}}>
+        <View>
+          <Text>
+            Select number of dice to roll then hit Ready
+          </Text>
+        </View>
+        <View>
+          <Text>
+            Then flick your phone to roll!
+          </Text>
+        </View>
+        <DisplayDice results={rollResults}/>
       </View>
-      <View>
-        <Text>
-          Then flick your phone to roll!
-        </Text>
+      <View style={{flex: 2}}>
+        <DiceForm diceData={{numberOfDice, setNumberOfDice}}/>
+        <Button block onPress={subscribe}>
+          <Text>Ready</Text>
+        </Button>
       </View>
-      <DisplayDice results={rollResults}/>
-      <DiceForm diceData={{numberOfDice, setNumberOfDice}}/>
-      <Button block onPress={subscribe}>
-        <Text>Ready</Text>
-      </Button>
-      
-      <Text>{data.x || 0}</Text>
+    </View>
     </>
   );
 }
