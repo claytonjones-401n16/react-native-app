@@ -14,6 +14,8 @@ export default function Dice() {
 
   const [rollResults, setRollResults] = useState([]);
 
+  const [readyButtonDisabled, setReadyButtonDisabled] = useState(false);
+
   async function getFonts() {
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
@@ -36,6 +38,8 @@ export default function Dice() {
   }
 
   const subscribe = () => {
+    setRollResults([]);
+    setReadyButtonDisabled(true);
     Accelerometer.addListener((accelerometerData) => {
       if (parseInt(accelerometerData.x) > 2) {
         unsubscribe();
@@ -50,19 +54,9 @@ export default function Dice() {
   };
 
   const unsubscribe = () => {
+    setReadyButtonDisabled(false);
     Accelerometer.removeAllListeners();
   };
-
-  const styles = {
-    wrapper: {
-      flex: 1
-    },
-
-    menu: {
-      flexDirection: 'row',
-    }
-  }
-
 
   return (
     <>
@@ -82,7 +76,7 @@ export default function Dice() {
       </View>
       <View style={{flex: 2}}>
         <DiceForm diceData={{numberOfDice, setNumberOfDice}}/>
-        <Button block onPress={subscribe}>
+        <Button block onPress={subscribe} disabled={readyButtonDisabled}>
           <Text>Ready</Text>
         </Button>
       </View>
